@@ -1,0 +1,709 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>راهنمای برنامه‌نویسان</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;json&quot;,&quot;xml&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">json</a>
+              <a href="#" data-language-name="xml">xml</a>
+        </div>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#methods" class="toc-h1 toc-link" data-title="Methods">Methods</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#send" class="toc-h2 toc-link" data-title="Methods">send</a>
+                  </li>
+                  <li>
+                    <a href="#status" class="toc-h2 toc-link" data-title="Methods">status</a>
+                  </li>
+                  <li>
+                    <a href="#receive" class="toc-h2 toc-link" data-title="Methods">receive</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#statustable" class="toc-h1 toc-link" data-title="StatusTable">StatusTable</a>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='/register'>ثبت نام در سامانه صبا نوین</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>به راهنمای وب‌سرویس REST سامانه‌ی صبا نوین خوش آمدید.</p>
+
+<p>در این راهنما در مورد چگونگی کار با وب‌سرویس REST سامانه صبا نوین صحبت خواهیم کرد.</p>
+
+<p>در ابتدا باید بگوییم که در وب‌سرویس REST تمامی درخواست‌ها در قالب یک HTTP(S) Request انجام می‌شود.</p>
+
+<p>فرمت کلی هر درخواست به شکل زیر است:</p>
+
+<p><code>http://api.sabanovin.com/v1/YOUR-API-KEY/Region/MethodName.OutputFormat</code></p>
+
+<p>خروجی هر دستور بسته به نیاز شما می‌تواند با فرمت <code>JSON</code> یا <code>XML</code> باشد که باید نام فرمت دلخواه را در انتهای هر درخواست قرار دهید.</p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>مثال:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"http://api.sabanovin.com/v1/YOUR-API-KEY/credit.json"</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code>"http://api.sabanovin.com/v1/YOUR-API-KEY/credit.xml"
+</code></pre>
+<blockquote>
+<p>در مثال فوق بجای <code>YOUR-API-KEY</code> باید API-Key واقعی خود را قرار دهید.</p>
+</blockquote>
+
+<p>وب‌سرویس REST سامانه صبا نوین از API-Key برای وصل شدن به سیستم API خود استفاده می‌کند.</p>
+
+<p>ابتدا شما باید یک API-Key از بخش <a href="http://google.com">بخش وب‌سرویس سامانه</a> ایجاد کنید و سپس در تمامی درخواست‌ها باید API-Key خود را در آدرس URL وارد نمایید.</p>
+
+<p><code>http://api.sabanovin.com/v1/YOUR-API-KEY/method-name</code></p>
+
+<aside class="notice">
+بجای <code>YOUR-API-KEY</code> باید API-Key واقعی خود را قرار دهید.
+</aside>
+<h1 id='methods'>Methods</h1><h2 id='send'>send</h2>
+<p><code>[POST, GET]</code></p>
+<pre class="highlight json tab-json"><code><span class="s2">"http://api.sabanovin.com/v1/sa9811726250:oOW92MqjIKvRm51azQR8DTmkGFu49TyIuIK/sms/
+send.json?gateway=500043340673&amp;to=09373889007,09176097612&amp;text=تست"</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code>http://api.sabanovin.com/v1/sa9811726250:oOW92MqjIKvRm51azQR8DTmkGFu49TyIuIK/sms/
+send.xml?gateway=500043340673<span class="err">&amp;</span>to=09373889007,09176097612<span class="err">&amp;</span>text=تست
+</code></pre>
+<blockquote>
+<p>خروجی دستور بالا بصورت زیر است:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"326"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9373889007"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENQUEUED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-31 11:02:31"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-09 11:02:31"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"327"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9176097612"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACKLIST"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-31 11:02:31"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-09 11:02:31"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"تایید شد"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="nt">&lt;response&gt;</span>
+   <span class="nt">&lt;entries&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>328<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>9373889007<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;status&gt;</span>ENQUEUED<span class="nt">&lt;/status&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-10-31 13:22:39<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-09 13:22:39<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>329<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>9176097612<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;status&gt;</span>BLACKLIST<span class="nt">&lt;/status&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-10-31 13:22:39<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-09 13:22:39<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+   <span class="nt">&lt;/entries&gt;</span>
+   <span class="nt">&lt;status&gt;</span>
+      <span class="nt">&lt;code&gt;</span>200<span class="nt">&lt;/code&gt;</span>
+      <span class="nt">&lt;message&gt;</span>تایید شد<span class="nt">&lt;/message&gt;</span>
+   <span class="nt">&lt;/status&gt;</span>
+<span class="nt">&lt;/response&gt;</span>
+</code></pre>
+<p>از این متد برای ارسال پیامک به یک یا چند شماره استفاده نمایید.</p>
+<h3 id=''>پارامتر‌های ورودی</h3>
+<table><thead>
+<tr>
+<th>نام</th>
+<th>نوع</th>
+<th>توضیحات</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>gateway</td>
+<td>الزامی</td>
+<td>شماره درگاه ارسالی(شماره خط)</td>
+</tr>
+<tr>
+<td>to</td>
+<td>الزامی</td>
+<td>شماره گیرندگان</td>
+</tr>
+<tr>
+<td>text</td>
+<td>الزامی</td>
+<td>متن پیام</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+برای تعداد بیش از یک گیرنده، شماره ها را با کاما <code>,</code> از هم جدا کنید.
+</aside>
+<h3 id='-2'>پارامتر‌های خروجی</h3>
+<table><thead>
+<tr>
+<th>نام</th>
+<th>توضیحات</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>batch_id</td>
+<td>شناسه دسته پیامک(گیرندگان بیش از یک شماره)</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td>شناسه پیامک</td>
+</tr>
+<tr>
+<td>number</td>
+<td>شماره دریافت کننده</td>
+</tr>
+<tr>
+<td>status</td>
+<td>وضعیت</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>تاریخ ارسال (میلادی)</td>
+</tr>
+<tr>
+<td>datetime_fa</td>
+<td>تاریخ ارسال (شمسی)</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+برای مشاهده جدول وضعیت‌ها به بخش جدول وضعیت مراجعه کنید.
+</aside>
+<h2 id='status'>status</h2>
+<p><code>[POST, GET]</code></p>
+<pre class="highlight json tab-json"><code><span class="s2">"http://api.sabanovin.com/v1/sa2888726250:VbcYsNXPh1BPm7yy9bKiADGSDcZIZjRfBBDR/sms/
+status.json?batch_id=44"</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code>http://api.sabanovin.com/v1/sa2888726250:VbcYsNXPh1BPm7yy9bKiADGSDcZIZjRfBBDR/sms/
+status.xml?batch_id=44
+</code></pre>
+<blockquote>
+<p>خروجی دستور بالا بصورت زیر است:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"187"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9373889007"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENQUEUED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-31 14:34:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-09 14:34:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"188"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9176097612"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACKLIST"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-31 14:34:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-09 14:34:21"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"تایید شد"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="nt">&lt;response&gt;</span>
+   <span class="nt">&lt;entries&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>187<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>9373889007<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;status&gt;</span>ENQUEUED<span class="nt">&lt;/status&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-10-31 14:34:21<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-09 14:34:21<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>188<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>9176097612<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;status&gt;</span>BLACKLIST<span class="nt">&lt;/status&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-10-31 14:34:21<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-09 14:34:21<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+   <span class="nt">&lt;/entries&gt;</span>
+   <span class="nt">&lt;status&gt;</span>
+      <span class="nt">&lt;code&gt;</span>200<span class="nt">&lt;/code&gt;</span>
+      <span class="nt">&lt;message&gt;</span>تایید شد<span class="nt">&lt;/message&gt;</span>
+   <span class="nt">&lt;/status&gt;</span>
+<span class="nt">&lt;/response&gt;</span>
+</code></pre>
+<p>از این متد برای دریافت وضعیت پیام استفاده کنید.</p>
+<h3 id='-3'>پارامتر‌های ورودی</h3>
+<table><thead>
+<tr>
+<th>نام</th>
+<th>نوع</th>
+<th>توضیحات</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>batch_id</td>
+<td>الزامی</td>
+<td>شناسه دسته پیامک</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td>الزامی</td>
+<td>شناسه پیامک</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+فقط یکی از پارامترهای فوق الزامیست.
+</aside>
+<h3 id='-4'>پارامتر‌های خروجی</h3>
+<table><thead>
+<tr>
+<th>نام</th>
+<th>توضیحات</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference_id</td>
+<td>شناسه پیامک</td>
+</tr>
+<tr>
+<td>number</td>
+<td>شماره دریافت کننده</td>
+</tr>
+<tr>
+<td>status</td>
+<td>وضعیت</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>تاریخ ارسال (میلادی)</td>
+</tr>
+<tr>
+<td>datetime_fa</td>
+<td>تاریخ ارسال (شمسی)</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+برای مشاهده جدول وضعیت‌ها به بخش جدول وضعیت مراجعه کنید.
+</aside>
+<h2 id='receive'>receive</h2>
+<p><code>[POST, GET]</code></p>
+<pre class="highlight json tab-json"><code><span class="s2">"http://api.sabanovin.com/v1/sa2888726250:VbcYsNXPh1BPm7yy9bKiADGSDcZIZjRfBBDR/sms/
+status.json?batch_id=44"</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code>http://api.sabanovin.com/v1/sa2888726250:VbcYsNXPh1BPm7yy9bKiADGSDcZIZjRfBBDR/sms/
+status.xml?batch_id=44
+</code></pre>
+<blockquote>
+<p>خروجی دستور بالا بصورت زیر است:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0937956770"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-02 10:28:19"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-11 10:28:19"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0937762994"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-27 10:28:19"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-05 10:28:19"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0937287124"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-22 10:28:19"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-07-30 10:28:19"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0937160906"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-17 10:28:19"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"datetime_fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1396-08-26 10:28:19"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"تایید شد"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="nt">&lt;response&gt;</span>
+   <span class="nt">&lt;entries&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>12<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>0937956770<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-11-02 10:28:19<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-11 10:28:19<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>18<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>0937762994<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-10-27 10:28:19<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-05 10:28:19<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>24<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>0937287124<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-10-22 10:28:19<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-07-30 10:28:19<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+      <span class="nt">&lt;item&gt;</span>
+         <span class="nt">&lt;reference_id&gt;</span>79<span class="nt">&lt;/reference_id&gt;</span>
+         <span class="nt">&lt;number&gt;</span>0937160906<span class="nt">&lt;/number&gt;</span>
+         <span class="nt">&lt;datetime&gt;</span>2017-11-17 10:28:19<span class="nt">&lt;/datetime&gt;</span>
+         <span class="nt">&lt;datetime_fa&gt;</span>1396-08-26 10:28:19<span class="nt">&lt;/datetime_fa&gt;</span>
+      <span class="nt">&lt;/item&gt;</span>
+   <span class="nt">&lt;/entries&gt;</span>
+   <span class="nt">&lt;status&gt;</span>
+      <span class="nt">&lt;code&gt;</span>200<span class="nt">&lt;/code&gt;</span>
+      <span class="nt">&lt;message&gt;</span>تایید شد<span class="nt">&lt;/message&gt;</span>
+      <span class="nt">&lt;pagination&gt;</span>
+         <span class="nt">&lt;total&gt;</span>4<span class="nt">&lt;/total&gt;</span>
+         <span class="nt">&lt;count&gt;</span>4<span class="nt">&lt;/count&gt;</span>
+         <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+         <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+         <span class="nt">&lt;totalPages&gt;</span>1<span class="nt">&lt;/totalPages&gt;</span>
+         <span class="nt">&lt;links</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/pagination&gt;</span>
+   <span class="nt">&lt;/status&gt;</span>
+<span class="nt">&lt;/response&gt;</span>
+</code></pre>
+<p>از این متد برای دریافت پیامک‌های دریافتی استفاده کنید.</p>
+<h3 id='-5'>پارامتر‌های ورودی</h3>
+<table><thead>
+<tr>
+<th>نام</th>
+<th>نوع</th>
+<th>توضیحات</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>gateway</td>
+<td>الزامی</td>
+<td>شماره درگاه(شماره خط)</td>
+</tr>
+<tr>
+<td>from_date</td>
+<td>اختیاری</td>
+<td>دریافت شده از تاریخ</td>
+</tr>
+<tr>
+<td>to_date</td>
+<td>اختیاری</td>
+<td>دریافت شده تا تاریخ</td>
+</tr>
+<tr>
+<td>is_read</td>
+<td>اختیاری</td>
+<td>پیام‌های خوانده شده یا نشده(پیش‌فرض خوانده نشده)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+پیام‌های خوانده‌شده پیام‌هایی هستند که قبلا یا از طریق وب‌سرویس و یا از طریق وب‌هوک آنها را دریافت کرده‌اید.
+</aside>
+<h3 id='-6'>پارامتر‌های خروجی</h3>
+<table><thead>
+<tr>
+<th>نام</th>
+<th>توضیحات</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference_id</td>
+<td>شناسه پیامک</td>
+</tr>
+<tr>
+<td>number</td>
+<td>شماره ارسال کننده</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>تاریخ ارسال (میلادی)</td>
+</tr>
+<tr>
+<td>datetime_fa</td>
+<td>تاریخ ارسال (شمسی)</td>
+</tr>
+</tbody></table>
+<h1 id='statustable'>StatusTable</h1>
+<p>جدول وضعیت پیام‌ها:</p>
+
+<table><thead>
+<tr>
+<th>وضعیت</th>
+<th>توضیح</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ENQUEUE</td>
+<td>پیام در صف قرار گرفته است</td>
+</tr>
+<tr>
+<td>DELIVERED</td>
+<td>پیام تحویل داده شده</td>
+</tr>
+<tr>
+<td>FAILED</td>
+<td>خطا در ارسال پیام - برگشت هزینه</td>
+</tr>
+<tr>
+<td>BLACKLIST</td>
+<td>شماره گیرنده در بلک‌لیست است - برگشت هزینه</td>
+</tr>
+<tr>
+<td>UNDELIVERED</td>
+<td>پیام هنوز به گیرنده تحویل داده نشده(در دسترس نبودن)</td>
+</tr>
+<tr>
+<td>SCHEDULED</td>
+<td>پیام زمانبندی شده</td>
+</tr>
+<tr>
+<td>INVALID_NUMBER</td>
+<td>شماره گیرنده اشتباه - برگشت هزینه</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="xml">xml</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
